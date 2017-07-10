@@ -1,0 +1,34 @@
+<ion-view title="LEGALIZACIONES" id="pg-tab-legalizacion" class="">
+    <ion-content has-header="true" padding="true" >                    
+        <ion-list class="list-datos">
+            <ion-item class="item-remove-animate item-avatar item-icon-right item-abiertas aitemLega" id="legAbiertas" ng-repeat="legalizacion in legalizaciones" type="item-text-wrap" href="#/menu-lateral/legalizacion/abiertas/{{legalizacion.entryLegMovil}}">
+                <!--<img ng-src="{{legalizacion.face}}">-->
+                <p class="item-content-legalizacion">ID: {{legalizacion.entryLegMovil}}</p>
+                <p class="item-content-legalizacion">Descripción: {{legalizacion.descripcion}}</p>
+                <p class="item-content-legalizacion">Perfil: {{legalizacion.nombre}}</p>
+                <p class="item-content-legalizacion">Grupo: {{legalizacion.nombreGrupo}}</p>
+                <strong><p class="item-content-total"> Total: {{legalizacion.valorAux}}</p></strong>
+                <i class="icon ion-chevron-right icon-accessory"></i>         
+                <ion-option-button class="button-assertive button-enviar" ng-click="enviarLegalizacion(legalizacion)" ng-style="estilolink">
+                    <span  class="perfil-btn-remover"><img ng-src="img/icon-enviar.png" class="icon-informacion margin-left-p3"><br/>
+                        <label class="margin-left-p1">Enviar</label></span>
+                </ion-option-button>
+                <ion-option-button class="button-assertive button-editar" ng-click="irfactura(legalizacion)">
+                    <span  class="perfil-btn-remover"><img ng-src="img/icon-factura.png" class="icon-informacion margin-left-9"><br/>
+                        <label class="margin-left-5">Facturas</label></span>
+                </ion-option-button>
+                <ion-option-button class="button-assertive button-eliminar" ng-click="eliminarLegalizacion(legalizacion)" >
+                    <span  class="perfil-btn-remover"><img ng-src="img/icon-eliminar.png" class="icon-informacion margin-left-5"><br/>
+                        <label class="margin-left-5">Eliminar</label></span>
+                </ion-option-button>
+            </ion-item><br/>
+        </ion-list>
+    </ion-content>
+
+    <ion-footer-bar align-title="center" class="letra-blanca" id="footer-legalizacion"> 
+        <div class="title"><a ui-sref="menu.nueva-legalizacion"  class="button button-positive button-block perfil-button-nuevo">NUEVA LEGALIZACIÓN</a></div>
+    </ion-footer-bar>
+    
+      
+
+</ion-view>

@@ -1,0 +1,38 @@
+<ion-view view-title="LEGALIZACIÓN DETALLE">
+  <ion-content has-header="true" padding="true">
+      <label>MODIFICAR LEGALIZACIÓN</label>
+          <ion-content padding="true" class="has-header">
+        <form id="legalizacionDetalleForm" class="list" name="legalizacionDetalleForm">
+                
+            <label class=""  >
+                <input type="text" ng-disabled="true" id="idLegalizacion" name="idLegalizacion" ng-model="legalizacion.entryLegMovil" required  ng-keyup="cancelev($event)">
+                <span ng-if="legalizacionDetalleForm.idLegalizacion.$invalid && legalizacionDetalleForm.idLegalizacion.$dirty" ></span>
+            </label>
+            <span></span>
+            <br/>
+
+           
+               <label class="item item-select perfil" id="detalleLegalizacionPerfil" name="detalleLegalizacionPerfil" >
+                <span class="input-label">Perfil</span>
+                <select ng-model="legalizacion.entryPerfilMovil" ng-options="x.perfil for x in opcion_perfil"></select> 
+            </label>
+             <span ng-if="legalizacionDetalleForm.perfilLegalizacion.$invalid"></span>
+            <br/>
+            
+            <span ></span>
+            <br/>
+
+            <label class="">
+                <input id="descripcionLegalizacion" name="descripcionLegalizacion" type="text" placeholder="Descripción" ng-model="legalizacion.descripcion"  ng-keyup="cancelev($event)" class="e-color">
+            </label>
+            <br/>
+
+        </form>
+        <ion-footer-bar align-title="center" class="letra-blanca" id="footer-legalizacion"> 
+            <div class="title"><a  id="nuevo-legalizacion-btn-crear" class=" button button-positive  button-block " ng-click="modificarleg(legalizacion)">EDITAR</a></div>
+        </ion-footer-bar>
+    </ion-content>                    
+         
+    </ion-content>
+  
+</ion-view>

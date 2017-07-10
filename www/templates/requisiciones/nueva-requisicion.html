@@ -1,0 +1,36 @@
+
+<ion-view title="NUEVA REQUISICIÓN" id="pgRequisicion" class=" ">
+    <ion-content padding="true" class="has-header">
+        <form id="nuevarequisicionForm" class="list" name="nuevarequisicionForm">
+
+           
+
+            <label class="item item-select perfil" id="lblPerfilRequisicion" ng-class="{'has-error':nuevarequisicionForm.perfilRequisicion.$invalid">
+                <span class="input-label">Perfil</span>
+                <select ng-model="requisicion.entryPerfilMovil" ng-options="x.perfilGrupo for x in opcion_perfil" required="true" id="perfilRequisicion" name="perfilRequisicion"></select>
+                <span ng-if="nuevarequisicionForm.perfilRequisicion.$invalid"></span>
+            </label>
+            <span ng-if="nuevarequisicionForm.perfilRequisicion.$error.required" class="help-block e-message">Campo requerido, debe seleccionar un valor</span>
+            <br/>
+
+<!--            <label class="">
+                <input id="descripcionRequisicion" name="descripcionRequisicion" type="text" placeholder="Descripción" ng-model="requisicion.descripcion"  ng-keyup="cancelev($event)" class="e-color">
+            </label>
+            <br/>-->
+            
+            
+            <label class="" ng-class="{'has-error':nuevarequisicionForm.descripcionRequisicion.$invalid && nuevarequisicionForm.descripcionRequisicion.$touched}">
+                <input type="text" placeholder="Descripción" id="descripcionRequisicion" name="descripcionRequisicion" ng-model="requisicion.descripcion" required  ng-keyup="cancelev($event)" class="e-color">
+                <span ng-if="nuevarequisicionForm.descripcionRequisicion.$invalid && nuevarequisicionForm.descripcionRequisicion.$dirty" ></span>
+            </label>
+            <span ng-if="nuevarequisicionForm.descripcionRequisicion.$error.required && nuevarequisicionForm.descripcionRequisicion.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span>
+            <br/> 
+            
+            
+
+        </form>
+        <ion-footer-bar align-title="center" class="letra-blanca footer-initial" id="footer-legalizacion"> 
+            <div class="title"><a  id="nuevo-legalizacion-btn-crear" class=" button button-positive  button-block " ng-click="crearreq(requisicion, nuevarequisicionForm)">CREAR</a></div>
+        </ion-footer-bar>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,38 @@
+<ion-view title="GASTOS" id="pgFactura" class="">
+    <ion-content has-header="true" padding="true" > 
+        <table class="ancho-100 borde-datos fondo-datos-superior espacio-form-40" cellspacing ="0" >
+              <tr>
+                  <td class="borde-datos fondo-datos-azul letra-blanca" colspan="3">Perfil: {{legalizacion.nombrePerfil}}  -  Grupo: {{legalizacion.nombreGrupo}}</td>
+             </tr>
+            <tr class="borde-datos">
+                <td class="borde-datos fondo-datos-azul-medio letra-blanca">Referencia</td>
+                <td class="borde-datos fondo-datos-azul-medio letra-blanca">Fecha</td>
+                <td class="borde-datos fondo-datos-azul-medio letra-blanca">Total</td>
+              </tr>
+              <tr class="borde-datos">
+                <td class="borde-datos fondo-datos-gris">{{factura.referencia}}</td>
+                <td class="borde-datos fondo-datos-gris">{{factura.fecha}}</td>
+                <td class="borde-datos fondo-datos-gris"><strong>{{valorAux}}</strong></td>
+              </tr>
+        </table>
+        <br/>
+        <ion-list>
+            <ion-item class="item-remove-animate item-avatar item-icon-right item-facturas aitemLega" id="gastosLeg" ng-repeat="gasto in gastos" type="item-text-wrap" href="#/menu-lateral/legalizacion/gasto-detalle/{{gasto.entryGastoMovil}}">
+                
+                <p class="item-content-legalizacion"><strong>Tipo: {{gasto.tipoGasto.descripcion}}</strong></p>
+                <p class="item-content-legalizacion"> Info: {{gasto.info1}}</p>           
+                <p class="item-content-total"><strong> Valor: {{gasto.valorAux}}</strong></p>
+                <i class="icon ion-chevron-right icon-accessory"></i>        
+            
+                <ion-option-button class="button-assertive button-eliminar" ng-click="eliminargasto(gasto)">
+                    <span  class="perfil-btn-remover"><img ng-src="img/icon-eliminar.png" class="icon-informacion"><br/>
+                        <label>Eliminar</label></span>
+                </ion-option-button>
+            </ion-item><br/>
+        </ion-list>
+  </ion-content>
+
+<ion-footer-bar align-title="center" class="letra-blanca" id="footer-legalizacion"> 
+   <div class="title"><a href="#/menu-lateral/legalizacion/nuevo-gasto/{{factura.entryFactMovil}}"  class="button button-positive button-block perfil-button-nuevo">NUEVO GASTO</a></div>
+</ion-footer-bar>    
+</ion-view>

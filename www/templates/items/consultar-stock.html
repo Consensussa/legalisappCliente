@@ -1,0 +1,19 @@
+<ion-view title="CONSULTAR STOCK" id="pgConsultarStock" class=" ">
+    <ion-content padding="true" class="has-header">
+        <form id="consultarStockForm" class="list espacio-form-40" name="$parent.consultarStockForm"  novalidate>
+  <table class="ancho-100 borde-datos fondo-datos-superior espacio-form-40" cellspacing ="0" >
+              <tr>
+                  <td class="borde-datos fondo-datos-azul letra-blanca" colspan="3">Perfil: {{requisicion.nombrePerfil}}  -  Grupo: {{requisicion.nombreGrupo}}</td>
+             </tr>         
+       </table><br/>
+<!--        <ion-scroll zooming="true" direction="xy" style="width:100%;height:100%">
+                          <pdf-viewer
+        delegate-handle="my-pdf-container"
+        url="pdfUrl"
+        scale="1"
+        show-toolbar="true"></pdf-viewer>  </ion-scroll>-->
+          <center><canvas id="thecanvas" width="1000px" height="1200px"></canvas></center>
+        </form>
+    </ion-content>
+
+</ion-view>

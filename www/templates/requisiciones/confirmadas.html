@@ -1,0 +1,30 @@
+<ion-view title="REQUISICIONES" id="pg-tab-legalizacion" class="">
+    <ion-content has-header="true" padding="true" >
+        <table class="">
+                <tr>
+                    <td class="td-sincronizar-image">
+                        <a href="" name=""  ng-click="sincronizacionReq('confirmadas')"><img ng-src="img/icon-sincronizacion-art.png" class="icon-sincronizar"></a>
+                    </td>
+                    <td class="td-sincronizar-text" >
+                        <h5>Sincronizar Requisiciones</h5>
+                    </td>
+                </tr>
+            </table>
+        <ion-list class="list-datos">
+            <ion-item class="item-remove-animate item-avatar item-icon-right item-aprobadas aitemLega" ng-repeat="requisicion in requisiciones" type="item-text-wrap" href="#/menu-lateral/requisicion/aprobadas/{{requisicion.entryReqMovil}}">
+                <!--<img ng-src="{{requisicion.face}}">-->
+                <p class="item-content-legalizacion">ID: {{requisicion.entryReqMovil}}</p>
+                <p class="item-content-legalizacion">Descripción: {{requisicion.descripcion}}</p>
+                <p class="item-content-legalizacion">Perfil: {{requisicion.perfilNombreAux}}</p>
+                <p class="item-content-legalizacion">Estado: {{requisicion.estado}}</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>      
+<!--                <ion-option-button class="button-assertive button-eliminar" ng-click="eliminarLegalizacion(legalizacion)">
+                    <span  class="perfil-btn-remover"><img ng-src="img/icon-eliminar.png" class="icon-informacion"><br/>
+                        <label>Eliminar</label></span>
+                </ion-option-button>-->
+            </ion-item><br/>
+        </ion-list>
+    </ion-content>
+
+
+</ion-view>

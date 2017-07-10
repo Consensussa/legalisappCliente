@@ -1,0 +1,176 @@
+<ion-view title="NUEVO GASTO" id="pgNuevoGasto" class=" ">
+    <ion-content padding="true" class="has-header">
+        <form id="nuevoGastoForm" class="list espacio-form-40" name="$parent.nuevoGastoForm"  novalidate>
+            <table class="ancho-100 borde-datos fondo-datos-superior espacio-form-40" cellspacing ="0" >
+                <tr>
+                    <td class="borde-datos fondo-datos-azul letra-blanca" colspan="3">Perfil: {{legalizacion.nombrePerfil}}  -  Grupo: {{legalizacion.nombreGrupo}}</td>
+                </tr>         
+            </table><br/>
+            <h4>Tipos Gasto</h4>
+            <div class="item disable-tipogto">
+                <ion-search-select title="Seleccione un Tipo de Gasto" key-property="tipoGasto" value-property="descripcion" options="opcion_tipo_gasto" option-selected="gasto.tipoGasto">
+                    <label class="item item-input-inset" style="border:none;padding: 0px;cursor: pointer;" ng-class="{'has-error':nuevoGastoForm.tipoG.$invalid && nuevoGastoForm.tipoG.$touched}">
+                        <div class="item-input-wrapper">
+                            <i class="icon ion-ios-search"></i>
+                            <input type="text" ng-model="gasto.tipoGasto.descripcion" ng-change="invocarCampos()" placeholder="Buscar" disabled class="buscar-tipogto" required="true" name="tipoG" id="tipoG">
+                         <span ng-if="nuevoGastoForm.tipoG.$invalid && nuevoGastoForm.tipoG.$dirty" ></span>
+            
+                        </div>
+                    </label>
+                </ion-search-select>
+            </div>
+            <span ng-if="nuevoGastoForm.tipoG.$error.required && nuevoGastoForm.tipoG.$touched" class="help-block e-message">Campo requerido, debe seleccionar un valor</span>
+            <br/>        
+            <label class="" ng-class="{'has-error':nuevoGastoForm.valor.$invalid && nuevoGastoForm.valor.$touched}">
+                <input id="valor" name="valor" type="number" placeholder="Valor *" ng-model="gasto.valor" min="0" ng-keyup="cancelev($event)" required class="e-color">
+                <span ng-if="nuevoGastoForm.valor.$invalid && nuevoGastoForm.valor.$dirty" ></span>
+            </label>
+            <span ng-if="nuevoGastoForm.valor.$error.required && nuevoGastoForm.valor.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span>
+            <span ng-if="nuevoGastoForm.valor.$error.number && nuevoGastoForm.valor.$touched" class="help-block e-message">Debe ingresar un número</span>
+            <span ng-if="nuevoGastoForm.valor.$error.min && nuevoGastoForm.valor.$touched" class="help-block e-message">Debe ingresar un número mayor o igual a 0</span>
+
+            <br/>
+            <label class="item item-select perfil" id="lblImpuesto">
+                <span class="input-label">Impuesto</span>
+                <select ng-model="gasto.impuesto" ng-options="x.opcion for x in opcion_impuesto" required="true" id="impuesto" name="impuesto"></select>                
+            </label>
+            <br/>
+
+            <label class="">
+                <input id="notas" name="notas" type="text" placeholder="Notas" ng-model="gasto.notas"  ng-keyup="cancelev($event)" class="e-color">
+            </label>
+            <br/>
+            <div ng-show="tipoGasto.nombreCampo1 !== null">
+                <div ng-if="tipoGasto.exigeCampo1 === '1'">
+                    <label ng-if="tipoGasto.tipoCampo1 === '1'" ng-class="{'has-error':nuevoGastoForm.info111.$invalid && nuevoGastoForm.info111.$touched}" class="">
+                        <input id="info111" name="info111" type="text" placeholder="{{tipoGasto.nombreCampo1}}" ng-model="gasto.info1"  ng-keyup="cancelev($event)" class="e-color" required="true">
+                        <span ng-if="nuevoGastoForm.info111.$invalid && nuevoGastoForm.info111.$dirty" ></span>
+                        <span ng-if="nuevoGastoForm.info111.$error.required && nuevoGastoForm.info111.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span>
+                    </label> 
+                    <label ng-if="tipoGasto.tipoCampo1 === '0'" ng-class="{'has-error':nuevoGastoForm.info101.$invalid && nuevoGastoForm.info101.$touched}" class="">
+                        <input id="info101" name="info101" type="number" placeholder="{{tipoGasto.nombreCampo1}}" ng-model="gasto.info1"  ng-keyup="cancelev($event)" class="e-color" required="true">
+                        <span ng-if="nuevoGastoForm.info101.$invalid && nuevoGastoForm.info101.$dirty" ></span>
+                        <span ng-if="nuevoGastoForm.info101.$error.required && nuevoGastoForm.info101.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span>
+                    </label>
+                </div>
+
+                <div ng-if="tipoGasto.exigeCampo1 === '0'">
+                    <label ng-if="tipoGasto.tipoCampo1 === '1'" ng-class="{'has-error':nuevoGastoForm.info110.$invalid && nuevoGastoForm.info110.$touched}" class="">
+                        <input id="info110" name="info110" type="text" placeholder="{{tipoGasto.nombreCampo1}}" ng-model="gasto.info1"  ng-keyup="cancelev($event)" class="e-color">
+                        <span ng-if="nuevoGastoForm.info110.$invalid && nuevoGastoForm.info110.$dirty" ></span>
+                        <span ng-if="nuevoGastoForm.info110.$error.required && nuevoGastoForm.info110.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span>
+                    </label> 
+                    <label ng-if="tipoGasto.tipoCampo1 === '0'" ng-class="{'has-error':nuevoGastoForm.info100.$invalid && nuevoGastoForm.info100.$touched}" class="">
+                        <input id="info100" name="info100" type="number" placeholder="{{tipoGasto.nombreCampo1}}" ng-model="gasto.info1"  ng-keyup="cancelev($event)" class="e-color">
+                        <span ng-if="nuevoGastoForm.info100.$invalid && nuevoGastoForm.info100.$dirty" ></span>
+                        <span ng-if="nuevoGastoForm.info100.$error.required && nuevoGastoForm.info100.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span>
+                    </label>
+                </div>
+            </div>
+
+            <br/>
+            <div ng-show="tipoGasto.nombreCampo2 !== null">
+                <div ng-if="tipoGasto.exigeCampo2 === '1'">
+                    <label ng-if="tipoGasto.tipoCampo2 === '1'" ng-class="{'has-error':nuevoGastoForm.info211.$invalid && nuevoGastoForm.info211.$touched}" class="">
+                        <input id="info211" name="info211" type="text" placeholder="{{tipoGasto.nombreCampo2}}" ng-model="gasto.info2"  ng-keyup="cancelev($event)" class="e-color" required="true">
+                        <span ng-if="nuevoGastoForm.info211.$invalid && nuevoGastoForm.info211.$dirty" ></span>
+                        <span ng-if="nuevoGastoForm.info211.$error.required && nuevoGastoForm.info211.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span>
+
+                    </label>
+                    <label ng-if="tipoGasto.tipoCampo2 === '0'" ng-class="{'has-error':nuevoGastoForm.info201.$invalid && nuevoGastoForm.info201.$touched}"  class="">
+                        <input id="info201" name="info201" type="number" placeholder="{{tipoGasto.nombreCampo2}}" ng-model="gasto.info2"  ng-keyup="cancelev($event)"  class="e-color" required="true">
+                        <span ng-if="nuevoGastoForm.info201.$invalid && nuevoGastoForm.info201.$dirty" ></span>
+                        <span ng-if="nuevoGastoForm.info201.$error.required && nuevoGastoForm.info201.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span>
+
+                    </label>
+                </div>
+                <div ng-if="tipoGasto.exigeCampo2 === '0'">
+                    <label ng-if="tipoGasto.tipoCampo2 === '1'" ng-class="{'has-error':nuevoGastoForm.info210.$invalid && nuevoGastoForm.info210.$touched}" class="">
+                        <input id="info210" name="info210" type="text" placeholder="{{tipoGasto.nombreCampo2}}" ng-model="gasto.info2"  ng-keyup="cancelev($event)"  class="e-color">
+                        <span ng-if="nuevoGastoForm.info210.$invalid && nuevoGastoForm.info210.$dirty" ></span>
+                        <span ng-if="nuevoGastoForm.info210.$error.required && nuevoGastoForm.info210.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span>
+
+                    </label>
+                    <label ng-if="tipoGasto.tipoCampo2 === '0'" ng-class="{'has-error':nuevoGastoForm.info200.$invalid && nuevoGastoForm.info200.$touched}"  class="">
+                        <input id="info200" name="info200" type="number" placeholder="{{tipoGasto.nombreCampo2}}" ng-model="gasto.info2"  ng-keyup="cancelev($event)"  class="e-color">
+                        <span ng-if="nuevoGastoForm.info200.$invalid && nuevoGastoForm.info200.$dirty" ></span>
+                        <span ng-if="nuevoGastoForm.info200.$error.required && nuevoGastoForm.info200.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span>
+
+                    </label>
+                </div>
+            </div>
+<br/>
+            <div ng-show="tipoGasto.nombreCampo3 !== null">
+                <div ng-if="tipoGasto.exigeCampo3 === '1'">
+                    <label ng-if="tipoGasto.tipoCampo3 === '1'" ng-class="{'has-error':nuevoGastoForm.info311.$invalid && nuevoGastoForm.info311.$touched}" class="">
+                        <input id="info311" name="info311" type="text" placeholder="{{tipoGasto.nombreCampo3}}" ng-model="gasto.info3"  ng-keyup="cancelev($event)" class="e-color" required="true">
+                        <span ng-if="nuevoGastoForm.info311.$invalid && nuevoGastoForm.info311.$dirty" ></span>
+                        <span ng-if="nuevoGastoForm.info311.$error.required && nuevoGastoForm.info311.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span>
+                    </label> 
+                    <label ng-if="tipoGasto.tipoCampo3 === '0'" ng-class="{'has-error':nuevoGastoForm.info301.$invalid && nuevoGastoForm.info301.$touched}" class="">
+                        <input id="info301" name="info301" type="number" placeholder="{{tipoGasto.nombreCampo3}}" ng-model="gasto.info3"  ng-keyup="cancelev($event)" class="e-color" required="true">
+                        <span ng-if="nuevoGastoForm.info301.$invalid && nuevoGastoForm.info301.$dirty" ></span>
+                        <span ng-if="nuevoGastoForm.info301.$error.required && nuevoGastoForm.info301.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span>
+                    </label>
+                </div>
+
+                <div ng-if="tipoGasto.exigeCampo3 === '0'">
+                    <label ng-if="tipoGasto.tipoCampo3 === '1'" ng-class="{'has-error':nuevoGastoForm.info310.$invalid && nuevoGastoForm.info310.$touched}" class="">
+                        <input id="info310" name="info310" type="text" placeholder="{{tipoGasto.nombreCampo3}}"   ng-keyup="cancelev($event)" class="e-color">
+                        <span ng-if="nuevoGastoForm.info310.$invalid && nuevoGastoForm.info310.$dirty" ></span>
+                        <span ng-if="nuevoGastoForm.info310.$error.required && nuevoGastoForm.info310.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span>
+                    </label> 
+                    <label ng-if="tipoGasto.tipoCampo3 === '0'" ng-class="{'has-error':nuevoGastoForm.info300.$invalid && nuevoGastoForm.info300.$touched}" class="">
+                        <input id="info300" name="info300" type="number" placeholder="{{tipoGasto.nombreCampo3}}"   ng-keyup="cancelev($event)" class="e-color">
+                        <span ng-if="nuevoGastoForm.info300.$invalid && nuevoGastoForm.info300.$dirty" ></span>
+                        <span ng-if="nuevoGastoForm.info300.$error.required && nuevoGastoForm.info300.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span>
+                    </label>
+                </div>
+            </div>
+<br/>
+
+        </form>
+    </ion-content>
+    <script id="templates/searchSelect.html" type="text/ng-template">
+
+        <div class="modal-fondo">
+        <div class="modal-content">
+        <center>
+
+        <ion-modal-view>
+        <ion-header-bar>
+        <button class="button button-icon ion-close" ng-click="closeModal();"></button>
+        <h1 class="title" style="right: 0 !important;" ng-if="searchSelect.enableSearch">
+        <label class="item item-icon-left" style="height: 100%;top: -6px;padding: 0px 0px 0px 32px !important;">
+        <i class="icon ion-android-search" style="font-size: 20px; left: 0 !important;top: 7px;"></i>
+        <input type="text" placeholder="{{searchSelect.title}}" ng-model="searchSelect.searchvalue" style="width: 90%;height: 100%;margin-top: 7px;" />
+        </label>
+        <i ng-if="searchSelect.searchvalue.length > 0" on-tap="clearSearch()" class="icon ion-close" style="top:0px;right: 0px;position:absolute;cursor:pointer;z-index: 2;"></i>
+        </h1>
+        <h1 class="title" ng-if="!searchSelect.enableSearch">{{ searchSelect.title }}</h1>
+        </ion-header-bar>
+        <ion-content>
+        <div class="list">
+        <div ng-if="searchSelect.keyProperty && searchSelect.valueProperty">
+        <ion-radio collection-repeat="option in options | filter: searchSelect.searchvalue" item-height="55px" item-width="100%" ng-value="option[searchSelect.keyProperty]" ng-click="saveOption()" ng-checked="option[searchSelect.selectedProperty]" ng-model="searchSelect.option">
+        {{ option[searchSelect.valueProperty] }}
+        </ion-radio>
+        </div>
+        <div ng-if="!searchSelect.keyProperty || !searchSelect.valueProperty">
+        <ion-radio collection-repeat="option in options | filter: searchSelect.searchvalue" item-height="55px" ng-value="option" item-width="100%" ng-click="saveOption()" ng-model="searchSelect.option">
+        {{ option }}
+        </ion-radio>
+        </div>
+        </div>
+        </ion-content>
+        </ion-modal-view>
+
+        </center>
+        </div> 
+        </div>
+
+    </script>
+    <ion-footer-bar align-title="center" class="letra-blanca" id="footer-legalizacion"> 
+        <div class="title"><a  id="nuevo-Gasto-btn-crear" class=" button button-positive  button-block " ng-click="creargasto(gasto, nuevoGastoForm)">CREAR</a></div>
+    </ion-footer-bar>
+</ion-view>

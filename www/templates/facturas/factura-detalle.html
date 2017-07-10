@@ -1,0 +1,55 @@
+<ion-view title="FACTURA DETALLE" id="pgFacturaDetalle" class=" ">
+    <ion-content padding="true" class="has-header">
+        <form id="detalleFacturaForm" class="list espacio-form-40" name="$parent.detalleFacturaForm"  novalidate>
+  <table class="ancho-100 borde-datos fondo-datos-superior espacio-form-40" cellspacing ="0" >
+              <tr>
+                  <td class="borde-datos fondo-datos-azul letra-blanca" colspan="3">Perfil: {{legalizacion.nombrePerfil}}  -  Grupo: {{legalizacion.nombreGrupo}}</td>
+             </tr>         
+       </table><br/>
+            <h4 class="subrayado">Proveedor</h4>
+            <br/>
+
+            <table class="ancho-100 text-center" cellspacing ="0"><tr class="negrita fondo-datos-gris"><td class="borde-datos-negro ancho-50">Documento </td><td class="borde-datos-negro ancho-50">Tipo Documento</td></tr>
+                <tr><td class="borde-datos-negro  ancho-50"><label class="">{{factura.documento}}</label></td>
+                    <td class="borde-datos-negro  ancho-50"><label class="">{{factura.tipoDoc}}</label></td></tr>
+            </table>
+            <br/><br/>
+
+            <h4 class="subrayado">Información de la Factura</h4> <br/>
+            <h6>Encabezado</h6> 
+
+            <table class="ancho-100 text-center" cellspacing ="0"><tr class="negrita fondo-datos-gris"><td class="borde-datos-negro ancho-33">Fecha </td><td class="borde-datos-negro ancho-33">Referencia</td><td class="borde-datos-negro ancho-33">Moneda</td></tr>
+                <tr><td class="borde-datos-negro ancho-33"><label class="">{{factura.fecha}}</label></td>
+                    <td class="borde-datos-negro ancho-33"><label class="">{{factura.referencia}}</label></td>
+                    <td class="borde-datos-negro ancho-33"><label class="">{{factura.moneda}}</label></td>
+                </tr>
+                <tr class="negrita fondo-datos-gris"><td class="borde-datos-negro ancho-100" colspan="3">Notas</td></tr>
+                <tr><td class="borde-datos-negro ancho-100" colspan="3" rowspan="2"><label class="">{{factura.comentarioLine}}</label></td></tr>
+                <tr><td class="borde-datos-negro ancho-100" colspan="3"><label class=""></label></td></tr>
+                <tr class="negrita fondo-datos-gris"><td class="borde-datos-negro ancho-100" colspan="3">Adjunto</td></tr>
+                <tr><td class="borde-datos-negro ancho-100" colspan="3"><center>
+                        <img data-ng-src="{{factura.adjunto}}" ng-if="factura.adjunto"  data-err-src="img/error-image.png" class="imagen-detalle"/>
+                        <img ng-if="!factura.adjunto" ng-src="img/error-image.png" class="imagen-error"/></center>
+                    </td></tr>
+                
+                
+            </table>           
+            <br/>
+            <h6>Líneas</h6> 
+            <table class="ancho-100 text-center"  cellspacing ="0">
+                <tr class="negrita fondo-datos-gris"><td class="borde-datos-negro ancho-25">Información </td><td class="borde-datos-negro ancho-25">Valor</td><td class="borde-datos-negro ancho-25">Impuesto</td><td class="borde-datos-negro ancho-25">Tipo</td></tr>
+                <tr id="facturasLeg" ng-repeat="gasto in gastos">
+                    <td class="borde-datos-negro ancho-25">{{gasto.notas}}</td> 
+                    <td class="borde-datos-negro ancho-25">{{gasto.valorAux}}</td> 
+                    <td class="borde-datos-negro ancho-25">{{gasto.impuesto.opcion}}</td> 
+                    <td class="borde-datos-negro ancho-25">{{gasto.tipoGasto.descripcion}}</td> 
+                </tr>
+            </table>
+
+            <br/>
+            <p class="item-content-total"><strong> Valor Total: {{factura.valorAux}}</strong></p>
+             <br/>
+        </form>
+    </ion-content>
+
+</ion-view>

@@ -1,0 +1,100 @@
+<ion-view title="DETALLE ITEM" id="pgDetalleItem" class=" ">
+    <ion-content padding="true" class="has-header">
+        <form id="detalleItemForm" class="list espacio-form-40" name="$parent.detalleItemForm"  novalidate>
+            <table class="ancho-100 borde-datos fondo-datos-superior espacio-form-40" cellspacing ="0" >
+                <tr>
+                    <td class="borde-datos fondo-datos-azul letra-blanca" colspan="3">Perfil: {{itemCabecera.nombrePerfil}}  -  Grupo: {{itemCabecera.nombreGrupo}}</td>
+                </tr>         
+            </table><br/>
+
+            <label class="item item-select perfil" id="lblTipo">
+                <span class="input-label">Tipo</span>
+                <select ng-model="item.tipo" ng-options="x.opcion for x in opcion_tipo" required="true" id="tipo" name="tipo" ng-change="filtroArticulo()" disabled="true"></select>                
+            </label>
+            <br/>
+
+            <label class="item item-select perfil" id="lblTipoReq">
+                <span class="input-label">Req. Tipo</span>
+                <select ng-model="item.reqTipo" ng-options="y.opcion for y in opcion_reqtipo" required="true" id="reqTipo" name="reqTipo" ng-change="filtroArticulo()"  disabled="true"></select>                
+            </label>
+            <br/>   
+
+            <label class="" ng-class="">
+                <input id="descripcion" name="descripcion" type="text" placeholder="Descripción *" ng-model="item.descripcion"  ng-keyup="cancelev($event)" required="true" class="e-color">
+            </label>
+            <br/>
+
+             <label class="" ng-class="">
+                <input id="articulo" name="articulo" type="text" placeholder="Artículo *" ng-model="item.articuloNombre"  ng-keyup="cancelev($event)" disabled="true" class="e-color">
+            </label>
+            <br/>
+            
+            <table class="ancho-100"><tr><td class="ancho-15 vertical-align-inherit">Fecha Recepción: </td><td class="ancho-85">
+                        <label class="" ng-class="">
+                            <input type="text" placeholder="Fecha Recepcion" id="fechaItem" name="fechaItem"  ng-model="item.fecha" required="true" ng-keyup="cancelev($event)" class="e-color ancho-100"  disabled="true">
+                        </label>
+                    </td></tr></table>
+            <br/>
+
+            <label class="">Cantidad Solicitada:</label>
+            <label class="">
+                <input id="cantidadsolicitada" name="cantidadsolicitada" type="text" placeholder="Cantidad Solicitada" ng-model="item.cantidadSolicitada"  ng-keyup="cancelev($event)" class="e-color" disabled="true">
+            </label>
+            <br/>  
+
+            <label class="">Cantidad Aprobada:</label>
+               <label ng-if="item.tipo.valor === '1'" ng-class="{'has-error':detalleItemForm.cantidadaprobada1.$invalid && detalleItemForm.cantidadaprobada1.$touched}">
+                <input id="cantidadaprobada" name="cantidadaprobada1" type="number" placeholder="Cantidad Aprobada *" ng-model="item.cantidadAprobada"  ng-blur="validarEntero(item.cantidadAprobada,detalleItemForm)" ng-keyup="cancelev($event)" required="true" class="e-color" min="1" max="2000000000" disabled="true">
+                <span ng-if="detalleItemForm.cantidadaprobada1.$invalid && detalleItemForm.cantidadaprobada1.$dirty" ></span>
+            </label>
+            <span ng-if="detalleItemForm.cantidadaprobada1.$error.required && detalleItemForm.cantidadaprobada1.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span>
+            <span ng-if="detalleItemForm.cantidadaprobada1.$error.min && detalleItemForm.cantidadaprobada1.$touched" class="help-block e-message">Ingrese un valor mayor a 0</span>
+            <span ng-if="detalleItemForm.cantidadaprobada1.$error.max && detalleItemForm.cantidadaprobada1.$touched" class="help-block e-message">Ingrese un valor menor</span>
+
+            <label ng-if="item.tipo.valor === '0'" ng-class="{'has-error':detalleItemForm.cantidadaprobada0.$invalid && detalleItemForm.cantidadaprobada0.$touched}">
+                <input id="cantidadaprobada" name="cantidadaprobada0" type="number" placeholder="Cantidad Aprobada *" ng-model="item.cantidadAprobada"  ng-blur="validarEntero(item.cantidadAprobada,detalleItemForm)" ng-keyup="cancelev($event)" required="true" class="e-color" min="1" max="2000000000">
+               <span ng-if="detalleItemForm.cantidadaprobada0.$invalid && detalleItemForm.cantidadaprobada0.$dirty" ></span>
+            </label>
+            <span ng-if="detalleItemForm.cantidadaprobada0.$error.required && detalleItemForm.cantidadaprobada0.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span>
+            <span ng-if="detalleItemForm.cantidadaprobada0.$error.min && detalleItemForm.cantidadaprobada0.$touched" class="help-block e-message">Ingrese un valor mayor a 0</span>
+            <span ng-if="detalleItemForm.cantidadaprobada0.$error.max && detalleItemForm.cantidadaprobada0.$touched" class="help-block e-message">Ingrese un valor menor</span>
+            <br/>
+
+                 
+<label class="">Proveedor:</label>
+            <label class="" ng-class="{'has-error':detalleItemForm.proveedor.$invalid && detalleItemForm.proveedor.$touched}">
+                <input id="proveedor" name="proveedor" type="text" placeholder="Proveedor *" ng-model="item.proveedor"  ng-keyup="cancelev($event)" required="true" class="e-color">
+                <span ng-if="detalleItemForm.proveedor.$invalid && detalleItemForm.proveedor.$dirty" ></span>
+            </label>
+            <span ng-if="detalleItemForm.proveedor.$error.required && detalleItemForm.proveedor.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span>
+
+            <br/>
+
+<label class="">Almacen:</label>
+            <label class="">
+                <input id="almacen" name="almacen" type="text" placeholder="Almacén" ng-model="item.almacen"  ng-keyup="cancelev($event)" class="e-color" disabled="true">
+            </label>
+            <br/>
+
+<!--            <label class="">
+                <input id="centrocosto" name="centrocosto" type="text" placeholder="Centro de Costo" ng-model="item.centrocosto"  ng-keyup="cancelev($event)" class="e-color" disabled="true">
+            </label>
+            <br/>-->
+
+<!--            <label class="">
+                <input id="proyecto" name="proyecto" type="text" placeholder="Proyecto" ng-model="item.proyecto"  ng-keyup="cancelev($event)" class="e-color" disabled="true">
+            </label>-->
+
+
+            <br/>
+        </form>
+    </ion-content>
+
+
+    <ion-footer-bar align-title="center" class="letra-blanca" id="footer-item"> 
+        <div class="button-bar borde-grupo-boton" style=" bottom: 5px;">
+            <button class="button button-full button-positive-grupo borde-grupo-boton" ng-click="consultarstock(item)">CONSULTAR STOCK</button>
+         <button class="button button-full button-positive-grupo borde-grupo-boton" ng-click="editarite(item, detalleItemForm)">EDITAR</button>
+        </div> 
+    </ion-footer-bar>
+</ion-view>

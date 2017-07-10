@@ -1,0 +1,52 @@
+<ion-view title="LEGALIZACIONES" id="pg-tab-legalizacion" class="">
+    <ion-content has-header="true" padding="true" >
+        <ion-list class="list-datos">
+            <ion-item class="item-remove-animate item-avatar item-icon-right item-pendientes aitemLega" ng-repeat="legalizacion in legalizaciones" type="item-text-wrap" href="#/menu-lateral/legalizacion/pendientes/{{legalizacion.entryLegMovil}}">
+                <!--<img ng-src="{{legalizacion.face}}">-->
+                <p class="item-content-legalizacion">ID: {{legalizacion.entryLegMovil}}</p>
+                <p class="item-content-legalizacion">Descripción: {{legalizacion.descripcion}}</p>
+                <p class="item-content-legalizacion">Perfil: {{legalizacion.entryPerfilMovil}}</p>
+                <p class="item-content-legalizacion">Grupo: {{legalizacion.nombreGrupo}}</p>
+                <strong><p class="item-content-total"> Total: {{legalizacion.valorAux}}</p></strong>
+                <i class="icon ion-chevron-right icon-accessory"></i>         
+                <ion-option-button class="button-assertive button-enviar" ng-click="abrirAprobarModal(legalizacion)">
+                    <span  class="perfil-btn-remover"><img ng-src="img/icon-aprobar.png" class="icon-informacion"><br/>
+                        <label>Aprobar</label></span>
+                </ion-option-button>           
+                <ion-option-button class="button-assertive button-editar" ng-click="reenviarEmail(legalizacion)" ng-disabled="isDisabled">
+                    <span  class="perfil-btn-remover"><img ng-src="img/icon-email.png" class="icon-informacion margin-left-9" ><br/>
+                        <label class="margin-left-5">Reenviar</label></span>
+                </ion-option-button>
+                <ion-option-button class="button-assertive button-eliminar" ng-click="eliminarLegalizacion(legalizacion)">
+                    <span  class="perfil-btn-remover"><img ng-src="img/icon-eliminar.png" class="icon-informacion"><br/>
+                        <label>Eliminar</label></span>
+                </ion-option-button>
+            </ion-item><br/>
+        </ion-list>
+    </ion-content>
+
+    <script id="aprobar-modal.html" type="text/ng-template">
+        <ion-modal-view>    
+        <ion-content>
+        <div class="modal-fondo">
+        <div class="modal-content">
+        <center>
+        <div class="modal-cuerpo">
+        <div class="modal-contenido-interno">
+        <div class="title-modal-interno"><h1 class="title-modal">CÓDIGO APROBACIÓN</h1></div>
+        <div class="padding-input-modal"><input id="codigoAprobacion" name="codigoAprobacion" type="number" placeholder="Ingrese el Código" ng-model="legalizacion.noAprobacion"  ng-keyup="cancelev($event)" class="e-color letra-18 text-center ancho-85 border-input-modal"></div>
+        <div class="button-bar borde-grupo-boton ancho-85 text-center padding-grupo-boton" >
+        <button class="button button-full button-blanco-grupo borde-grupo-boton" ng-click="cerrarAprobarModal()">CANCELAR</button>
+        <button class="button button-full button-azul-grupo borde-grupo-boton" ng-click="verificarAprobacion()">ACEPTAR</button>
+        </div> 
+        </div>
+        </div>
+        </center>
+        </div> 
+        </div>
+        </ion-content>
+        </ion-modal-view>
+    </script>
+
+       
+</ion-view>

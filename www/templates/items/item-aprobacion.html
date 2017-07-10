@@ -1,0 +1,52 @@
+<ion-view title="ITEMS" id="pgItems" class=""><br/>
+    <ion-content has-header="true" padding="true" > 
+        <table class="ancho-100 borde-datos fondo-datos-superior espacio-form-40" cellspacing ="0" >
+              <tr>
+                  <td class="borde-datos fondo-datos-azul letra-blanca" colspan="3">Perfil: {{itemCabecera.nombrePerfil}}  -  Grupo: {{itemCabecera.nombreGrupo}}</td>
+             </tr>
+            <tr class="borde-datos">
+                <td class="borde-datos fondo-datos-azul-medio letra-blanca">ID Requisicion</td>
+                <td class="borde-datos fondo-datos-azul-medio letra-blanca">Descripción</td>
+              </tr>
+              <tr class="borde-datos">
+                <td class="borde-datos fondo-datos-gris">{{itemCabecera.entryReqMovil}}</td>
+                <td class="borde-datos fondo-datos-gris">{{itemCabecera.descripcionReq}}</td>
+              </tr>
+            
+        </table>
+       <br/>
+       
+              <ion-list>
+            <ion-item class="item-remove-animate item-avatar item-icon-right item-facturas aitemLega" id="gastosLeg" ng-repeat="item in items" type="item-text-wrap" href="#/menu-lateral/requisicion/item-detalle-aprobacion/{{item.entryItemMovil}}">
+                 <div ng-if="item.sincronizado === 0 || item.sincronizado === '0'" class="letra-negra">
+                <p class="item-content-legalizacion"><strong>Id: {{item.entryItemMovil}}</strong></p>
+                <p class="item-content-legalizacion"> Descripción: {{item.descripcion}}</p> 
+                 <p class="item-content-legalizacion"> Tipo: {{item.tipoAux}}</p>    
+                <i class="icon ion-chevron-right icon-accessory"></i>        
+            
+                <ion-option-button class="button-assertive button-eliminar" ng-click="eliminaritem(item)">
+                    <span  class="perfil-btn-remover"><img ng-src="img/icon-eliminar.png" class="icon-informacion"><br/>
+                        <label>Eliminar</label></span>
+                </ion-option-button>
+                 </div>
+                 <div ng-if="item.sincronizado ===1 || item.sincronizado === '1'" class="letra-gris">
+                <p class="item-content-legalizacion"><strong>Id: {{item.entryItemMovil}}</strong></p>
+                <p class="item-content-legalizacion"> Descripción: {{item.descripcion}}</p> 
+                 <p class="item-content-legalizacion"> Tipo: {{item.tipoAux}}</p>    
+                <i class="icon ion-chevron-right icon-accessory"></i>        
+            
+<!--                <ion-option-button class="button-assertive button-eliminar" ng-click="eliminaritem(item)">
+                    <span  class="perfil-btn-remover"><img ng-src="img/icon-eliminar.png" class="icon-informacion"><br/>
+                        <label>Eliminar</label></span>
+                </ion-option-button>-->
+                 </div>
+            </ion-item><br/>
+        </ion-list>
+            <br/>
+  </ion-content>
+
+<ion-footer-bar align-title="center" class="letra-blanca" id="footer-legalizacion"> 
+<!--   <div class="title"><a href="#/menu-lateral/requisicion/nuevo-item/{{itemCabecera.entryReqMovil}}"  class="button button-positive button-block perfil-button-nuevo">NUEVO ITEM</a></div>
+   -->
+</ion-footer-bar>    
+</ion-view>

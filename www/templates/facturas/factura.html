@@ -1,0 +1,46 @@
+<ion-view title="FACTURAS" id="pgFactura" class=""><br/>
+    <ion-content has-header="true" padding="true" > 
+        <table class="ancho-100 borde-datos fondo-datos-superior espacio-form-40" cellspacing ="0" >
+              <tr>
+                  <td class="borde-datos fondo-datos-azul letra-blanca" colspan="3">Perfil: {{legalizacion.nombrePerfil}}  -  Grupo: {{legalizacion.nombreGrupo}}</td>
+             </tr>
+            <tr class="borde-datos">
+                <td class="borde-datos fondo-datos-azul-medio letra-blanca">ID Legalización</td>
+                <td class="borde-datos fondo-datos-azul-medio letra-blanca">Descripción</td>
+                <td class="borde-datos fondo-datos-azul-medio letra-blanca" colspan="2">Total</td>
+              </tr>
+              <tr class="borde-datos">
+                <td class="borde-datos fondo-datos-gris">{{legalizacion.entryLegMovil}}</td>
+                <td class="borde-datos fondo-datos-gris">{{legalizacion.descripcion}}</td>
+                <td class="borde-datos fondo-datos-gris" colspan="2">{{legalizacion.valorAux}}</td>
+              </tr>
+            
+        </table>
+       <br/>
+        <ion-list>
+            <ion-item class="item-remove-animate item-avatar item-icon-right item-facturas aitemLega" id="facturasLeg" ng-repeat="factura in facturas" type="item-text-wrap" href="#/menu-lateral/legalizacion/factura-detalle/{{factura.entryFactMovil}}">
+                
+                <p class="item-content-legalizacion"><strong>Ref: {{factura.referencia}}</strong></p>
+                <p class="item-content-legalizacion"> {{factura.documento}}</p>
+                <p class="item-content-legalizacion">{{factura.fecha}}</p>
+                <p class="item-content-legalizacion">Adjunto:{{factura.adjunto}}</p>
+                <p class="item-content-total"><strong> Valor: {{factura.valorAux}}</strong></p>
+                <i class="icon ion-chevron-right icon-accessory"></i>         
+            
+                <ion-option-button class="button-assertive button-editar" ng-click="irgasto(factura)">
+                    <span  class="perfil-btn-remover"><img ng-src="img/icon-gastos.png" class="icon-informacion"><br/>
+                        <label>Gastos</label></span>
+                </ion-option-button>
+                <ion-option-button class="button-assertive button-eliminar" ng-click="eliminarfactura(factura)">
+                    <span  class="perfil-btn-remover"><img ng-src="img/icon-eliminar.png" class="icon-informacion"><br/>
+                        <label>Eliminar</label></span>
+                </ion-option-button>
+            </ion-item><br/>
+        </ion-list>
+  </ion-content>
+
+<ion-footer-bar align-title="center" class="letra-blanca" id="footer-legalizacion"> 
+   <div class="title"><a href="#/menu-lateral/legalizacion/nueva-factura/{{legalizacion.entryLegMovil}}"  class="button button-positive button-block perfil-button-nuevo">NUEVA FACTURA</a></div>
+   
+</ion-footer-bar>    
+</ion-view>

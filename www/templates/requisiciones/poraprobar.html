@@ -1,0 +1,60 @@
+<ion-view title="REQUISICIONES" id="pg-tab-requisicion" class="">
+    <ion-content has-header="true" padding="true" >
+        <table class="">
+                <tr>
+                    <td class="td-sincronizar-image">
+                        <a href="" name=""  ng-click="sincronizacionReq('poraprobar')"><img ng-src="img/icon-sincronizacion-art.png" class="icon-sincronizar"></a>
+                    </td>
+                    <td class="td-sincronizar-text" >
+                        <h5>Sincronizar Requisiciones</h5>
+                    </td>
+                </tr>
+            </table>
+        <label class="item item-select perfil" id="lblPerfilRequisicion">
+            <span class="input-label">Perfil</span>
+            <select ng-model="filtroReq.perfilCreador" ng-options="x.perfilCreadorReq for x in perfilesCreadorReq" required="true" id="perfilRequisicionFiltro" name="perfilRequisicionFiltro" ng-change="filtroPerfilAprobacion()"></select>
+        </label>
+        <br/>
+
+        <ion-checkbox class="e-color" item-right ng-model="filtroReq.seleccionarTodo" id="seleccionarTodo" name="seleccionarTodo" ng-keyup="cancelev($event)" ng-click="seleccionTodo()">Seleccionar Todo</ion-checkbox>
+                
+        <ion-list class="list-datos">
+            <ion-item  ng-repeat="requisicion in requisicionesFiltro" type="item-text-wrap" >
+                <!--<img ng-src="{{requisicion.face}}">-->
+                <ion-row>
+                    <ion-col >                      
+                        <ion-checkbox class="item-aprobacion" item-right ng-model="requisicion.valorAux" ></ion-checkbox>                      
+                    </ion-col>
+                    <ion-col >
+                        <ion-item id="lista-aprobacion" class="item-remove-animate item-avatar item-icon-right item-pendientes aitemLega item-aprobacion" type="item-text-wrap" href="#/menu-lateral/requisicion/poraprobar/{{requisicion.entryReqMovil}}">
+                            <p class="item-content-legalizacion">ID: {{requisicion.entryReqWeb}}</p>
+                            <p class="item-content-legalizacion">Descripción: {{requisicion.descripcion}}</p>
+                            <p class="item-content-legalizacion">Perfil: {{requisicion.perfilCreadorReq}}</p>
+                            <i class="icon ion-chevron-right icon-accessory"></i>         
+                            <ion-option-button class="button-balanced button-enviar" ng-click="aprobarUna(requisicion)">
+                                <span  class="perfil-btn-remover"><img ng-src="img/icon-aprobar.png" class="icon-informacion"><br/>
+                                    <label>Aprobar</label></span>
+                            </ion-option-button>
+                            <ion-option-button class="button-assertive button-enviar" ng-click="rechazarUna(requisicion)">
+                                <span  class="perfil-btn-remover"><img ng-src="img/icon-deshabilitar.png" class="icon-informacion"><br/>
+                                    <label class="margin-left-5">Rechazar</label></span>
+                            </ion-option-button> 
+                            <ion-option-button class="button-assertive button-editar" ng-click="iritem(requisicion)">
+                                <span  class="perfil-btn-remover"><img ng-src="img/icon-editar.png" class="icon-informacion margin-left-9"><br/>
+                                    <label class="margin-left-5">Editar</label></span>
+                            </ion-option-button>
+                            <ion-option-button class="button-assertive button-eliminar" ng-click="eliminarRequisicion(requisicion)">
+                                <span  class="perfil-btn-remover"><img ng-src="img/icon-eliminar.png" class="icon-informacion"><br/>
+                                    <label>Eliminar</label></span>
+                            </ion-option-button>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-item><br/>
+        </ion-list>
+    </ion-content>
+
+    <ion-footer-bar align-title="center" class="letra-blanca" id="footer-legalizacion"> 
+        <div class="title"><a ui-sref=""  class="button button-positive button-block perfil-button-nuevo" ng-click="aprobartodo(nuevoItemForm)">APROBAR TODAS</a></div>
+    </ion-footer-bar>
+</ion-view>

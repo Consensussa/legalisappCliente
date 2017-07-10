@@ -1,0 +1,96 @@
+<ion-view title="NUEVO PERFIL" id="pgPerfil" class=" ">
+    <ion-content padding="true" class="has-header">
+        <form id="nuevoPerfilForm" class="list" name="$parent.nuevoPerfilForm" novalidate>
+            <label class="" ng-class="{'has-error':nuevoPerfilForm.nombrePerfil.$invalid && nuevoPerfilForm.nombrePerfil.$touched}">
+                <input type="text" placeholder="Nombre Perfil *" id="nombrePerfil" name="nombrePerfil" ng-model="perfil.perfil" required  ng-keyup="cancelev($event)">
+                <span ng-if="nuevoPerfilForm.nombrePerfil.$invalid && nuevoPerfilForm.nombrePerfil.$dirty" ></span>
+            </label>
+            <span ng-if="nuevoPerfilForm.nombrePerfil.$error.required && nuevoPerfilForm.nombrePerfil.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span>
+            <br/>
+
+            <label class="" ng-class="{'has-error':nuevoPerfilForm.documentoPerfil.$invalid && nuevoPerfilForm.documentoPerfil.$touched}">
+                <input type="text" placeholder="Documento *" id="documentoPerfil" name="documentoPerfil" ng-model="perfil.docPerfil" required  ng-keyup="cancelev($event)">
+                <span ng-if="nuevoPerfilForm.documentoPerfil.$invalid && nuevoPerfilForm.documentoPerfil.$dirty" ></span>
+            </label>  
+            <span ng-if="nuevoPerfilForm.documentoPerfil.$error.required && nuevoPerfilForm.documentoPerfil.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span><br/>
+
+            <label class=""  ng-class="{'has-error':nuevoPerfilForm.nitPerfil.$invalid && nuevoPerfilForm.nitPerfil.$touched}">
+                <input type="number" placeholder="NIT *" ng-model="perfil.company" required  ng-keyup="cancelev($event)"  id="nitPerfil" name="nitPerfil">
+                <span ng-if="nuevoPerfilForm.nitPerfil.$invalid && nuevoPerfilForm.nitPerfil.$dirty" ></span>
+            </label>
+            <span ng-if="nuevoPerfilForm.nitPerfil.$error.required && nuevoPerfilForm.nitPerfil.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span><br/>
+
+            <label class=""  ng-class="{'has-error':nuevoPerfilForm.emailPerfil.$invalid && nuevoPerfilForm.emailPerfil.$touched}">
+                <input type="email" placeholder="Email Perfil*" ng-model="perfil.emailPerfil" required  ng-keyup="cancelev($event)"  id="emailPerfil" name="emailPerfil">
+                <span ng-if="nuevoPerfilForm.emailPerfil.$invalid && nuevoPerfilForm.emailPerfil.$dirty" ></span>
+            </label><br/>
+
+            <label class="item item-select perfil" id="lblGrupoGasto" ng-class="{'has-error':nuevoPerfilForm.grupoGtoPerfil.$invalid">
+                <span class="input-label">Grupo</span>
+                <select ng-model="perfil.idGrupo" ng-options="x.opcion for x in opcion_grupo_gto" required="true" id="grupoGtoPerfil" name="grupoGtoPerfil"></select>
+                <span ng-if="nuevoPerfilForm.grupoGtoPerfil.$invalid"></span>
+            </label>
+            <span ng-if="nuevoPerfilForm.grupoGtoPerfil.$error.required" class="help-block e-message">Campo requerido, debe seleccionar un valor</span>
+            
+            <span ng-if="nuevoPerfilForm.emailPerfil.$error.required && nuevoPerfilForm.emailPerfil.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span><br/>
+            <span ng-if="nuevoPerfilForm.emailPerfil.$error.email && nuevoPerfilForm.emailPerfil.$touched" class="help-block e-message">Correo invalido, ejemplo <strong>http://usuario@ejemplo.com</strong></span>
+
+            <label class="item item-select perfil" id="nuevoPerfilSap" name="nuevoPerfilSap" >
+                <span class="input-label">Integrado con SAP BUSINESS ONE</span>
+                <select ng-model="perfil.dimension1" ng-options="x.opcion for x in opcion_sap" disabled="true"></select> 
+            </label><br/>
+
+
+            <label ng-if="perfil.dimension1.valor == 1"  class="">
+                <input id="codigoVerificacionPerfil" name="codigoVerificacionPerfil" type="number" placeholder="Código de Verificación" ng-model="perfil.proyecto"  ng-keyup="cancelev($event)" class="e-color">
+            </label>
+
+
+            <div align="right">
+                <a href="#" onclick="window.open('http://www.consensussa.com/es/soluciones-sap/sap-business-one', '_system');" id="nuevoPerfilBtnSap" class=" button button-energized  button-block icon-left ion-play ">Conozca sobre SAP BUSINESS ONE</a>
+            </div>  
+
+
+            <label class="item item-select " id="nuevoPerfilAutorizacion" name="nuevoPerfilAutorizacion">
+                <span class="input-label">Autorización</span>
+                <select ng-model="perfil.dimension2" ng-options="l.opcion for l in opcion_autorizacion" disabled="true"></select> 
+            </label><br/>
+
+            <label class="" ng-if="perfil.dimension2.valor == 1"  ng-class="{'has-error':nuevoPerfilForm.correoPerfil.$invalid && nuevoPerfilForm.correoPerfil.$touched}">
+                <input  id="correoPerfil" name="correoPerfil" type="email" placeholder="Correo Autorizador" ng-model="perfil.aprobador"  ng-keyup="cancelev($event)" class="e-color" disabled="true">
+                <span ng-if="nuevoPerfilForm.correoPerfil.$invalid && nuevoPerfilForm.correoPerfil.$dirty" ></span>
+            </label>
+            <span ng-if="nuevoPerfilForm.correoPerfil.$error.email && nuevoPerfilForm.correoPerfil.$touched" class="help-block e-message">Correo invalido, ejemplo <strong>http://usuario@ejemplo.com</strong></span><br/>
+
+           
+            
+            <a  id="nuevo-perfil-btn-crear" class=" button button-positive  button-block " ng-click="crear(perfil, nuevoPerfilForm)" ng-style="estilolink">CREAR</a>
+
+        </form>
+
+    </ion-content>
+    
+     <script id="cargando-modal.html" type="text/ng-template">
+  <ion-modal-view>    
+    <ion-content>
+           <div class="modal-fondo">
+            <div class="modal-content">
+                <center>
+                    <div class="modal-cuerpo">
+                        <div class="modal-contenido-interno">
+                            <div class="title-modal-interno">
+                            
+            </div><br/>
+                          <div style="background:#2A3665; margin-top: -20px"> <img src="img/2Nw0tFJ4RPe3DoIBtiq9_logo-legalisapp.png" class="logo-inicio" height="40%" width="90%"></div><br/>
+                                   <h3>Cargando ...</h3>
+                                   <br/>
+                         
+                        </div>
+                    </div>
+                </center>
+            </div> 
+        </div>
+    </ion-content>
+  </ion-modal-view>
+    </script>
+</ion-view>

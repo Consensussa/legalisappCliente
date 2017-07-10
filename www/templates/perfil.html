@@ -1,0 +1,38 @@
+<ion-view title="PERFILES" id="pg-perfil" class=" ">
+    <ion-content padding="true" class="has-header">
+        <ion-list>
+            <ion-item class="item-remove-animate item-avatar item-icon-right item-content-abiertas" ng-repeat="perfil in perfiles" type="item-text-wrap" href="#/menu-lateral/perfil/{{perfil.entryPerfilMovil}}">
+                <div ng-if="perfil.habilitado === 1" class="letra-negra">
+                     <p class="letra-negra">Doc: {{perfil.docPerfil}}</p>
+                     <p class="letra-negra">Perfil: {{perfil.perfil}}</p>
+                     <p class="letra-negra">Compañía: {{perfil.nombreCompany}}</p>
+                     <p class="letra-negra">Aprobador: {{perfil.aprobador}}</p>
+                     <p class="letra-negra">Envía Req: {{perfil.enviaRequisicionAux}}</p>
+                    <i class="icon ion-chevron-right icon-accessory"></i>
+
+                    <ion-option-button class="button-assertive" ng-click="habilitar(perfil)">
+                        <span  class="perfil-btn-remover"><img ng-src="img/icon-deshabilitar.png" class="icon-informacion"><br/>
+                            <label>Deshabilitar</label></span>
+                    </ion-option-button>
+                </div>
+                <div ng-if="perfil.habilitado === 0" class="letra-gris">
+                    <h2 class="letra-gris">{{perfil.docPerfil}}</h2>
+                    <p class="letra-gris">{{perfil.perfil}}</p>
+                    <i class="icon ion-chevron-right icon-accessory"></i>
+
+                    <ion-option-button class="button-balanced" ng-click="habilitar(perfil)">
+                        <span  class="perfil-btn-remover"><img ng-src="img/icon-habilitar.png" class="icon-informacion"><br/>
+                            <label>Habilitar</label></span>
+                    </ion-option-button>
+                </div>
+            </ion-item><br/>
+        </ion-list>
+        <div class=""></div>
+    </ion-content>
+    <ion-footer-bar align-title="center" class="letra-blanca" id="footer-perfil">
+        <div class="title"><a ui-sref="menu.nuevo-perfil" id="perfil-btn-nuevo" class="button button-positive button-block perfil-button-nuevo">NUEVO PERFIL</a></div>
+    </ion-footer-bar>
+    
+   
+    
+</ion-view>

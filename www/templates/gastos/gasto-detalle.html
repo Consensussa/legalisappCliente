@@ -1,0 +1,36 @@
+<ion-view title="DETALLE DEL GASTO" id="pgDetalleGasto" class=" ">
+    <ion-content padding="true" class="has-header">
+        <form id="detalleGastoForm" class="list espacio-form-40" name="$parent.detalleGastoForm"  novalidate>
+            <label class="">
+                <input id="tipoGasto" name="tipoGasto" type="text" placeholder="Tipo" ng-model="gasto.nombreTipoGasto"  ng-keyup="cancelev($event)" disabled="true" class="e-color">
+            </label>
+            <br/>
+            <label class="">
+                <input id="valor" name="valor" type="number" placeholder="Valor" ng-model="gasto.valor"  ng-keyup="cancelev($event)" disabled="true" class="e-color">
+            </label>
+           <br/>           
+            <label class="item item-select perfil" id="lblImpuesto">
+                <span class="input-label">Impuesto</span>
+                <select ng-model="gasto.impuesto" ng-options="x.opcion for x in opcion_impuesto" required="true" id="impuesto" disabled="true"  name="impuesto"></select>                
+            </label>
+            <br/>
+             <label class="">
+                <input id="notas" name="notas" type="text" placeholder="Notas" ng-model="gasto.notas"  ng-keyup="cancelev($event)" disabled="true" class="e-color">
+            </label>
+            <br/>
+            <label class="">
+                <input id="info1" name="info1" type="text" placeholder="Información 01" ng-model="gasto.info1"  ng-keyup="cancelev($event)" disabled="true" class="e-color">
+            </label>
+            <br/>
+             <label class="">
+                <input id="info2" name="info2" type="text" placeholder="Información 02" ng-model="gasto.info2"  ng-keyup="cancelev($event)" disabled="true" class="e-color">
+            </label>
+            <br/>
+             <label class="">
+                <input id="info3" name="info3" type="text" placeholder="Información 03" ng-model="gasto.info3"  ng-keyup="cancelev($event)" disabled="true" class="e-color">
+            </label>
+            <br/>
+        </form>
+    </ion-content>
+  
+</ion-view>

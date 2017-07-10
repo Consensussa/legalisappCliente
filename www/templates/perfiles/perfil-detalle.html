@@ -1,0 +1,77 @@
+<ion-view view-title="PERFIL DETALLE">
+    <ion-content padding="true" class="has-header">
+        <form name="$parent.detallePerfilForm" id="detallePerfilForm" class="list"  novalidate>
+            <label class="">
+                <input type="text" placeholder="Nombre Perfil *" id="nombrePerfil" name="nombrePerfil" ng-model="perfil.perfil" required disabled="true">
+            </label>
+            <br/>
+
+            <label class="">
+                <input type="text" placeholder="Documento *" id="documentoPerfil" name="documentoPerfil" ng-model="perfil.docPerfil" required  disabled="true">
+            </label> <br/> 
+
+            <label class="" >
+                <input type="text" placeholder="NIT *" ng-model="perfil.nombreCompany" required disabled="true"   id="nitPerfil" name="nitPerfil">
+            </label><br/>
+
+            <label class="item item-select perfil" id="detallePerfilSap" name="detallePerfilSap" >
+                <span class="input-label">Integrado con SAP BUSINESS ONE</span>
+                <select ng-model="perfil.dimension1" ng-options="x.opcion for x in opcion_sap"></select> 
+            </label><br/>
+
+
+            
+            <label class="" >
+                <input type="text" placeholder="Grupo" ng-model="perfil.idGrupo.NombreGrupo" required disabled="true"   id="grupoPerfil" name="grupoPerfil">
+            </label><br/>
+            
+<!--            <label class="item item-select perfil" id="lblGrupoGasto" ng-class="{'has-error':nuevoPerfilForm.grupoGtoPerfil.$invalid">
+                <span class="input-label">Grupo</span>
+                <select ng-model="perfil.idGrupo" ng-options="x.NombreGrupo for x in opcion_grupo_gto" required="true" id="grupoGtoPerfil" name="grupoGtoPerfil" disabled="true"></select>
+                <span ng-if="nuevoPerfilForm.grupoGtoPerfil.$invalid"></span>
+            </label>
+            <span ng-if="nuevoPerfilForm.grupoGtoPerfil.$error.required" class="help-block e-message">Campo requerido, debe seleccionar un valor</span>
+            <br/>-->
+
+
+            <label class=""  ng-class="{'has-error':nuevoPerfilForm.emailPerfil.$invalid && nuevoPerfilForm.emailPerfil.$touched}">
+                <input type="text" placeholder="Email Perfil*" ng-model="perfil.emailPerfil" required  ng-keyup="cancelev($event)"  id="emailPerfil" name="emailPerfil">
+                <span ng-if="nuevoPerfilForm.emailPerfil.$invalid && nuevoPerfilForm.emailPerfil.$dirty" ></span>
+            </label>
+            <span ng-if="nuevoPerfilForm.emailPerfil.$error.required && nuevoPerfilForm.emailPerfil.$touched" class="help-block e-message">Campo requerido, debe ingresar un valor</span><br/>
+            <span ng-if="nuevoPerfilForm.emailPerfil.$error.email && nuevoPerfilForm.emailPerfil.$touched" class="help-block e-message">Correo invalido, ejemplo <strong>http://usuario@ejemplo.com</strong></span>
+
+
+            <label class="">
+                <input id="codigoVerificacionPerfil" name="codigoVerificacionPerfil" type="text" placeholder="Código de Verificación" ng-model="perfil.proyecto"   ng-keyup="cancelev($event)" class="e-color">
+            </label>
+
+
+            <div align="right">
+                <a href="#" onclick="window.open('http://www.consensussa.com/es/soluciones-sap/sap-business-one', '_self', 'location=yes');
+                        return false;" id="detallePerfilBtnSap" class=" button button-energized  button-block icon-left ion-play ">Conozca sobre SAP BUSINESS ONE</a>
+            </div>  
+
+
+            <label class="item item-select " id="detallePerfilAutorizacion" name="detallePerfilAutorizacion">
+                <span class="input-label">Autorización</span>
+                <select ng-model="perfil.dimension2" ng-options="l.opcion for l in opcion_autorizacion" disabled="true"></select> 
+            </label><br/>
+
+            <label class="" ng-if="perfil.dimension2.valor == 1"  ng-class="{'has-error':detallePerfilForm.correoPerfil.$invalid && detallePerfilForm.correoPerfil.$touched}">
+                <input  id="correoPerfil" name="correoPerfil" type="email" placeholder="Correo Autorizador" ng-model="perfil.aprobador"  ng-keyup="cancelev($event)" class="e-color" disabled="true">
+                <span ng-if="detallePerfilForm.correoPerfil.$invalid && detallePerfilForm.correoPerfil.$dirty" ></span>
+            </label>
+            <span ng-if="detallePerfilForm.correoPerfil.$error.email && detallePerfilForm.correoPerfil.$touched" class="help-block e-message">Correo invalido, ejemplo <strong>http://usuario@ejemplo.com</strong></span><br/>
+            
+              <label class="" >Envia Requisicion: 
+                <input type="text" placeholder="Envia Requisicion" ng-model="perfil.enviaRequisicionAux" required disabled="true"   id="enviaRequisicion" name="enviaRequisicion">
+            </label><br/>
+
+            <a  id="nuevo-perfil-btn-crear" class=" button button-positive  button-block " ng-click="editar(perfil)">EDITAR</a>
+
+
+        </form>
+
+    </ion-content>
+</ion-view>
