@@ -1,0 +1,99 @@
+<ion-view hide-nav-bar="true" id="page1" class=" ">
+    <ion-content  class="fondo-app">
+        <div class="div-modal-inicio">
+             <a href="" name=""  ng-click="abrirAyudaModal()" class="div-ayuda"><img ng-src="img/icon-ayuda.png" class="icon-informacion"></a>
+              <a href="" name=""  ng-click="abrirInformacionModal()" class="div-informacion"><img ng-src="img/icon-informacion.png" class="icon-informacion"></a>
+       
+        </div>
+        <div id="div-logo-inicio" class="" >
+            <img src="img/2Nw0tFJ4RPe3DoIBtiq9_logo-legalisapp.png" class="logo-inicio">           
+        </div>
+        
+        <div class="margen-inicio">
+        <fieldset class="fieldset-inicio">
+        <a ui-sref="menu.perfil" id="inicio-button1" class="button button-positive button-block icon-left ion-android-person ">PERFILES</a>
+        <a ui-sref="menu.legalizacion.abiertas" id="inicio-button2" class=" button button-positive  button-block icon-left ion-compose ">LEGALIZACIONES</a>
+         <a ui-sref="menu.requisicion.abiertas" id="inicio-button2" class=" button button-positive  button-block icon-left ion-android-list">REQUISICIONES</a>
+        <a ng-click="linkSAP()" id="inicio-button3" class=" button button-energized  button-block icon-left ion-play ">SAP BUSINESS ONE</a>
+
+        
+        <table class="table-inicio">
+            <tr>
+                <td class="td-sincronizar-image">
+                    <a href="" name=""  ng-click="sincronizacion()"><img ng-src="img/icon-sincronizacion.png" class="icon-sincronizar"></a>
+                </td>
+                <td class="td-sincronizar-text" >
+                    <label id="inicio-markdown2" class="fuente-inicio sincronizar-text">Su última Sincronización fue:</label>
+                    <input class="campo-block sincronizar-text" type="text" ng-model="datos.fecha" disabled />
+                </td>
+            </tr>
+        </table>
+       </fieldset>
+        </div>  
+    </ion-content>
+    
+      
+        
+         <script id="informacion-modal.html" type="text/ng-template">
+  <ion-modal-view>    
+    <ion-content>
+           <div class="modal-fondo">
+            <div class="modal-content">
+                <center>
+                    <div class="modal-cuerpo">
+                        <div class="modal-contenido-interno">
+                            <div class="title-modal-interno">
+            <div style="text-align:right; background:#2A3665"><img src="img/icon-cerrar.png"  height="35px" width="35px" ng-click="cerrarInformacionModal()"></div>                
+            <h1 class="title-modal">ABOUT ...</h1>
+                            
+            </div><br/>
+                          <div style="background:#2A3665; margin-top: -20px"> <img src="img/2Nw0tFJ4RPe3DoIBtiq9_logo-legalisapp.png" class="logo-inicio" height="40%" width="90%"></div><br/>
+                                   <h3>Version: 2.5.2</h3>
+                           <p>Copy Right © 2017, All Rights Reserved.</p>
+                           <p>Built by Consensus S.A.</p><br/>
+                        </div>
+                    </div>
+                </center>
+            </div> 
+        </div>
+    </ion-content>
+  </ion-modal-view>
+    </script>
+    
+    
+     <script id="ayuda-modal.html" type="text/ng-template">
+  <ion-modal-view>    
+    <ion-content>
+           <div class="modal-fondo">
+            <div class="modal-content" >
+           
+ 
+
+            
+                <center>
+                    <div class="modal-cuerpo">
+                        <div class="modal-contenido-interno">
+                            <div class="title-modal-interno">
+            <div style="text-align:right; background:#2A3665"><img src="img/icon-cerrar.png"  height="35px" width="35px" ng-click="cerrarAyudaModal()"></div>                
+            <h1 class="title-modal">Ayuda</h1>
+                            
+            </div><br/>
+                         <ion-scroll zooming="true" direction="xy" style="width:100%;height:100%">
+                          <pdf-viewer
+        delegate-handle="my-pdf-container"
+        url="pdfUrl"
+        scale="1"
+        show-toolbar="true"></pdf-viewer>  </ion-scroll>
+                        </div>
+                    </div>
+                </center>
+      
+            </div> 
+        </div>
+    </ion-content>
+  </ion-modal-view>
+    </script>
+    
+         
+    
+</ion-view>
